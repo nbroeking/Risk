@@ -9,20 +9,35 @@
 
 using namespace std;
 
-int GameApplication::createApplication()
+GameApplication::GameApplication()
 {
-    if( this->application == NULL )
-    {
-        application = new GameApplication(); // Create a new application
-        
-        int result = application->run(); //Run and get the exit code
-        
-        delete application; //Clean up memory
-        
-        return result;
-    }
+    //Created a new application
+    cout << "Creating a GameApplication\n";
+}
+GameApplication::~GameApplication()
+{
+    cout <<"Destructing a GameApplication\n";
+    //Delete a GameApplication
 }
 
+RiskApplication* GameApplication::getApplication()
+{
+    if( application == NULL )
+    {
+        application = new GameApplication(); //Create a GameApplication
+        
+    }
+    return application;
+}
+
+/*void GameApplication::cleanUpApplication()
+{
+    if( application != NULL)
+    {
+        delete application;
+        application = NULL;
+    }
+}*/
 int GameApplication::run()
 {
     //Set up

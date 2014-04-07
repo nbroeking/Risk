@@ -10,15 +10,16 @@
 
 class GameApplication: public RiskApplication
 {
-private:
-    GameApplication();
-    ~GameApplication();
     
+private:
 protected:
-    //int run();
+    
+    GameApplication();
+   ~GameApplication();
     
 public:
-    int createApplication();
+    static RiskApplication* getApplication();
+    int run();
 };
 
 #endif

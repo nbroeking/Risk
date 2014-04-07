@@ -1,4 +1,13 @@
+#include <iostream>
+#include "GameApplication.h"
+
 int main()
 {
-	return 0;
+	RiskApplication* app = GameApplication::getApplication();
+
+	int result = app->run();
+
+	RiskApplication::cleanUpApplication();
+
+	return result;
 }

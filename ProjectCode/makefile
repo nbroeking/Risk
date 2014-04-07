@@ -1,21 +1,18 @@
 #  All Files
-EX = gameMain GameApplication
+EX = gameMain.cpp
+FILES = GameApplication.o RiskApplication.o
 CFLAGS = -g -Wall
 #  Main target
-all: $(EX)
-
-#Generic Compile
-#  Generic compile and link
-%: %.cpp GameApplication.o gameMain.o
-	g++ -o $@  $^ $(CFLAGS)
+all: GameApplication.o RiskApplication.o
+	g++ $(CFLAGS) $(EX) $(FILES) -o playRisk
 
 #  Delete unwanted files
 clean:
-	rm -f -r $(EX) *.o *.a *.dSYM
+	rm -f -r playRisk *.o *.a *.dSYM
 
 # Create Object Files
 GameApplicaton.o: GameApplication.cpp
-	g++ -c $(CFLAGS) $< $(LIBS)
+	g++ -c $(CFLAGS) $<
 
-gameMain.o: gameMain.cpp
-	g++ -c $(CFLAGS) $< $(LIBS)
+RiskApplication.o: RiskApplication.cpp
+	g++ -c $(CFLAGS) $<

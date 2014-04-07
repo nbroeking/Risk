@@ -2,21 +2,22 @@
 //This class is the abstract class for a RiskApplication. 
 //Written By: Nicolas C. Broeking
 //Created on April 4, 2014
-
 #ifndef __RiskApplication__
 #define __RiskApplication__
 
 class RiskApplication
 {
+private:
 protected:
-    RiskApplication *application;
+    static RiskApplication *application;
     
-    virtual int run() = 0;
-    
-    virtual RiskApplication() = 0;
-    virtual ~RiskApplication() = 0;
+    RiskApplication();
+    virtual ~RiskApplication()=0;
     
 public:
-    virtual int createApplication() = 0;
-}
+    static RiskApplication* getApplication();
+    static void cleanUpApplication();
+    virtual int run() = 0;
+    
+};
 #endif
