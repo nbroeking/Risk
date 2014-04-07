@@ -13,13 +13,15 @@ class GameApplication: public RiskApplication
     
 private:
 protected:
-    
     GameApplication();
    ~GameApplication();
     
 public:
-    static RiskApplication* getApplication();
     int run();
+    
+    //Static member variables
+    static RiskApplication* getApplication();
+    
 };
 
 #endif

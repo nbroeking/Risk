@@ -5,6 +5,7 @@
 //This program class is a application that runs the game side of things.
 
 #include "GameApplication.h"
+#include <strings.h>
 #include <iostream>
 
 using namespace std;
@@ -29,7 +30,6 @@ RiskApplication* GameApplication::getApplication()
     }
     return application;
 }
-
 /*void GameApplication::cleanUpApplication()
 {
     if( application != NULL)
@@ -45,9 +45,16 @@ int GameApplication::run()
     
     while( run )
     {
-        //Run the game
+        //Get input
+        
+        //handle input
+        
+        //send move to server
+        
+        //Wait for Server Validation
+        
+        //Wait for next players move
     }
     
-    cout << "We ran the game!" << endl;
     return 0;
 }

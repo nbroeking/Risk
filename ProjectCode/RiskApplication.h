@@ -15,9 +15,10 @@ protected:
     virtual ~RiskApplication()=0;
     
 public:
-    static RiskApplication* getApplication();
-    static void cleanUpApplication();
     virtual int run() = 0;
     
+    //Static class variables
+    static RiskApplication* getApplication();
+    static void cleanUpApplication();
 };
 #endif
