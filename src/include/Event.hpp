@@ -26,4 +26,4 @@ public:
 
 };
 
-#endif __Event__
+#endif // __Event__

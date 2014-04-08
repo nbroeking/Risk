@@ -6,7 +6,7 @@
 //
 //
 
-#include "CLEventDelegate.h"
+#include "CLEventDelegate.hpp"
 
 CLEventDelegate::CLEventDelegate()
 {
@@ -16,14 +16,14 @@ CLEventDelegate::~CLEventDelegate()
 {
     delete handler;
 }
-Event CLEventDelegate::getCommand()
+Event* CLEventDelegate::getCommand()
 {
     //get the command
     string instruction;
     cout << "Instruction: ";
     cin >> instruction;
-    cout << "\n";
+    cout << endl;
     
-    return handler.handle(instruction);
+    return handler->handle(instruction);
     
 }

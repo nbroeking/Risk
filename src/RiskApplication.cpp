@@ -4,7 +4,7 @@
 
 //This program class is a application that runs the game side of things.
 
-#include "RiskApplication.h"
+#include "RiskApplication.hpp"
 #include <iostream>
 
 using namespace std;

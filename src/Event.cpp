@@ -3,9 +3,10 @@
 //Written on: April 7 2014
 //Purpose This file is to encapuslate different types of things that can happen in the game.
 
+#include "Event.hpp"
+
 Event::Event()
 {
-    event = NULL;
     cout << "Creating a new Event!\n";
 }
 Event::~Event()

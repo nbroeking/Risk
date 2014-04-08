@@ -10,8 +10,8 @@
 #define ____CommandHandler__
 
 #include <iostream>
-#include <string.h>
-#include "Event.h"
+#include <string>
+#include "Event.hpp"
 
 class CommandHandler
 {
@@ -20,6 +20,6 @@ public:
     CommandHandler();
     ~CommandHandler();
     
-   Event handle(string command);
+   Event* handle(string command);
 };
 #endif /* defined(____CommandHandler__) */
