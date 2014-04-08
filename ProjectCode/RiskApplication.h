@@ -17,6 +17,7 @@ protected:
 public:
     virtual int run() = 0;
     
+    
     //Static class variables
     static RiskApplication* getApplication();
     static void cleanUpApplication();

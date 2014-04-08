@@ -11,8 +11,6 @@
 
 using namespace std;
 
-enum { COMMANDEVENT, RISKEVENT };
-
 class Event
 {
 private:
