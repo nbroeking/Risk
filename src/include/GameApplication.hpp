@@ -3,7 +3,7 @@
 //Written On: April 4, 2014
 
 //This program class is a application that runs the game side of things.
-#include "RiskApplication.h"
+#include "RiskApplication.hpp"
 
 #ifndef __GameApplication__
 #define __GameApplication__

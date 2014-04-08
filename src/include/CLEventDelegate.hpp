@@ -10,11 +10,11 @@
 #define ____CLEventDelegate__
 
 #include <iostream>
-#include "UserEventDelegate.h"
-#include "Event.h"
-#include "
+#include "UserEventDelegate.hpp"
+#include "Event.hpp"
+#include "CommandHandler.hpp"
 
-class CLEventDelegate:(public) UserEventDelegate {
+class CLEventDelegate:public UserEventDelegate {
     
 private:
     CommandHandler *handler;
@@ -25,7 +25,7 @@ public:
     CLEventDelegate();
     ~CLEventDelegate();
     
-    Event getCommand();
+    Event* getCommand();
     void displayGameState();
     
 };

@@ -4,7 +4,7 @@
 
 //This program class is a application that runs the game side of things.
 
-#include "GameApplication.h"
+#include "GameApplication.hpp"
 #include <strings.h>
 #include <iostream>
 
