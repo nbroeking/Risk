@@ -17,12 +17,12 @@ for i in $(find src/ | egrep '.*\.c(pp|xx)?$') ; do
 	# add this file to the list of
 	# sources
     echo "Generating from source file: $i"
-	deps="$(echo $i | sed 's/^src\///')"
+	deps="$(echo $i | sed 's/^src\/*//')"
 
 	# add the resulting object file to
 	# the objects
 	src[$cnt]=$deps
-	obs+=("../obs/`basename $i | sed 's/\.c\(pp\|xx\)\?$/.o/g'`")
+	obs+=("../obs/`basename $i | sed 's/\.cpp/.o/g'`")
 	cnt=$[cnt + 1]
 done
 

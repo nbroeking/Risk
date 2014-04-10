@@ -13,12 +13,5 @@
 
 class UserEventDelegate
 {
-private:
-
-protected:
-    
-public:
-    UserEventDelegate();
-    virtual ~UserEventDelegate() = 0;
 };
 #endif /* defined(____UserEventDelegate__) */

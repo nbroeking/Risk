@@ -31,12 +31,12 @@ RiskApplication* RiskApplication::getApplication()
 
 RiskApplication::RiskApplication()
 {
-    cout<<"Creating a RiskApplication!\n"; //Default RiskApplication constructor
+    //cout<<"Creating a RiskApplication!\n"; //Default RiskApplication constructor
 }
 
 RiskApplication::~RiskApplication()
 {
-    cout<<"Destructing a RiskApplication!\n"; //Default RiskAppliction destructor
+    //cout<<"Destructing a RiskApplication!\n"; //Default RiskAppliction destructor
 }
 
 int RiskApplication::run()

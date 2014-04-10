@@ -7,7 +7,7 @@
 //
 
 #include "CLEventDelegate.hpp"
-
+using namespace std;
 CLEventDelegate::CLEventDelegate()
 {
     handler = new CommandHandler();
@@ -21,6 +21,7 @@ Event* CLEventDelegate::getCommand()
     //get the command
     string instruction;
     cout << "Instruction: ";
+    
     cin >> instruction;
     cout << endl;
     

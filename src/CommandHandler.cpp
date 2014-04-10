@@ -8,21 +8,25 @@
 
 #include "CommandHandler.hpp"
 
-CommandHandler::CommandHandler() {
+CommandHandler::CommandHandler()
+{
     //Constructor
 }
 
-CommandHandler::~CommandHandler() {
+CommandHandler::~CommandHandler()
+{
     //Destructor
 }
 
 Event* CommandHandler::handle(string command)
 {
-    Event* evt = NULL;
     
-    if( command == "quit") {
-        return evt;
+    if( command == "quit")
+    {
+        return new QuitEvent();
     }
-    
-    return evt;
+    else
+    {
+        return new AttackEvent();
+    }
 }

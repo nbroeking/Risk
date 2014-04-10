@@ -13,16 +13,18 @@ using namespace std;
 
 class Event
 {
+public:
+	virtual ~Event(){};
+    enum Type {QUIT = 0, ATTACK = 1};
+    
+    virtual Type getType() = 0;
 private:
 
 protected:
 
+    Type type;
 	string event;
  
-public:
-
-	Event();
-	virtual ~Event() = 0;
 
 };
 

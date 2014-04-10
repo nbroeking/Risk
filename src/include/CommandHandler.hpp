@@ -11,15 +11,18 @@
 
 #include <iostream>
 #include <string>
-#include "Event.hpp"
+#include "Handler.hpp"
+#include "QuitEvent.hpp"
+#include "AttackEvent.hpp"
 
-class CommandHandler
+class CommandHandler :public Handler
 {
     
 public:
     CommandHandler();
     ~CommandHandler();
     
-   Event* handle(string command);
+    Event* handle(string command);
+    
 };
 #endif /* defined(____CommandHandler__) */
