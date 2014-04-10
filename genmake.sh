@@ -37,7 +37,7 @@ echo 'CPPC?=g++'>&3
 echo 'AR?=ar'>&3
 echo 'OPTFLAGS?=-g3 -ggdb'>&3
 echo "CFLAGS=$CFLAGS "'$(OPTFLAGS)'" -I include">&3
-echo "LDFLAGS=$LDFLAGS">&3
+echo "LDFLAGS=$LDFLAGS -lpthread">&3
 echo 'OBJECTS='${obs[@]}>&3
 echo 'BINARY='$BINARY_NAME>&3
 
