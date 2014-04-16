@@ -22,8 +22,11 @@ Event* CLEventDelegate::getCommand()
     string instruction;
     cout << "Instruction: ";
     
-    cin >> instruction;
-    cout << endl;
+    cout.flush();
+    
+    getline(cin, instruction);
+    
+    //cout << endl;
     
     return handler->handle(instruction);
     

@@ -25,6 +25,10 @@ Event* CommandHandler::handle(string command)
     {
         return new QuitEvent();
     }
+    else if( command == "display")
+    {
+        return new DisplayEvent();
+    }
     else
     {
         return new AttackEvent();
