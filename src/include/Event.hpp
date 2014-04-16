@@ -24,8 +24,6 @@ protected:
 
     Type type;
 	string event;
- 
-
 };
 
 #endif // __Event__
