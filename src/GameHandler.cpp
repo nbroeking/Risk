@@ -10,12 +10,14 @@
 
 GameHandler::GameHandler()
 {
+    state = new Gamestate();
     //Constructor
 }
 
 GameHandler::~GameHandler()
 {
     //Destructor
+    delete state;
 }
 
 bool GameHandler::handle(Event * event)
@@ -24,7 +26,7 @@ bool GameHandler::handle(Event * event)
     {
         case Event::DISPLAY:
             //DIsplay stuff
-            cout << "Printing the Game \n";
+            state->display();
             break;
             
         default:

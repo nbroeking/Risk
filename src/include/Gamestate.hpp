@@ -11,4 +11,19 @@
 
 #include <iostream>
 
+class Gamestate {
+
+private:
+    
+    int *countries;
+    int *owners;
+    int numCountries;
+    
+    
+public:
+    
+    Gamestate();
+    ~Gamestate();
+    void display();
+};
 #endif /* defined(____Gamestate__) */

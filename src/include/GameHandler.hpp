@@ -14,12 +14,14 @@
 #include "Handler.hpp"
 #include "QuitEvent.hpp"
 #include "AttackEvent.hpp"
+#include "GameState.hpp"
+
 
 class GameHandler :public Handler
 {
 
 private:
-    
+    Gamestate *state;
     
 public:
     GameHandler();

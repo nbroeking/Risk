@@ -3,7 +3,7 @@ AR?=ar
 OPTFLAGS?=-g3 -ggdb
 CFLAGS= $(OPTFLAGS) -I include
 LDFLAGS= -lpthread
-OBJECTS=../obs/AttackEvent.o ../obs/CLEventDelegate.o ../obs/CommandHandler.o ../obs/DisplayEvent.o ../obs/GameApplication.o ../obs/GameHandler.o ../obs/GameMain.o ../obs/BasicFileDescriptor.o ../obs/NotificationPool.o ../obs/Socket.o ../obs/Thread.o ../obs/QuitEvent.o ../obs/RiskApplication.o
+OBJECTS=../obs/AttackEvent.o ../obs/CLEventDelegate.o ../obs/CommandHandler.o ../obs/DisplayEvent.o ../obs/GameApplication.o ../obs/GameHandler.o ../obs/GameMain.o ../obs/Gamestate.o ../obs/BasicFileDescriptor.o ../obs/NotificationPool.o ../obs/Socket.o ../obs/Thread.o ../obs/QuitEvent.o ../obs/RiskApplication.o
 BINARY=../PlayRisk
 all: $(OBJECTS)
 	$(CPPC) -o $(BINARY) $(OBJECTS) $(LDFLAGS)
@@ -33,6 +33,9 @@ setup:
 	$(CPPC) $(CFLAGS) -o $@ -c $<
 
 ../obs/GameMain.o: GameMain.cpp
+	$(CPPC) $(CFLAGS) -o $@ -c $<
+
+../obs/Gamestate.o: Gamestate.cpp
 	$(CPPC) $(CFLAGS) -o $@ -c $<
 
 ../obs/BasicFileDescriptor.o: os_ss/BasicFileDescriptor.cpp

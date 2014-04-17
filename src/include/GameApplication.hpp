@@ -7,6 +7,7 @@
 #include "CLEventDelegate.hpp"
 #include "CommandHandler.hpp"
 #include "GameHandler.hpp"
+#include "Handler.hpp"
 
 
 #ifndef __GameApplication__
@@ -17,7 +18,7 @@ class GameApplication: public RiskApplication
     
 private:
     UserEventDelegate *eventDelegate;
-     Handler * gameHandler;
+    Handler* gameHandler;
     
 protected:
     GameApplication();
