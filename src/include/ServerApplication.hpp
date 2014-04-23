@@ -9,14 +9,15 @@
 
 #include "Gamestate.hpp"
 
+#include "os_ss/Mutex.hpp"
+
 class ServerApplication {
 public:
-
 void run() ;
 
 private:
-
-Gamestate state ;
+Gamestate m_state ;
+Mutex m_mutex ;
 } ;
 
 #endif /* SERVERAPPLICATION_HPP_ */
