@@ -11,24 +11,10 @@
 
 #include <iostream>
 #include <string>
-<<<<<<< HEAD
-#include "Event.hpp"
-=======
-<<<<<<< HEAD
->>>>>>> jrahm-master
 #include "Handler.hpp"
 #include "QuitEvent.hpp"
 #include "AttackEvent.hpp"
 #include "DisplayEvent.hpp"
-<<<<<<< HEAD
-=======
-=======
-// #include "Handler.hpp"
-// #include "QuitEvent.hpp"
-// #include "AttackEvent.hpp"
-#include "Event.hpp"
->>>>>>> 034d98b93b6cc30dba3deab3b3656f925f7af490
->>>>>>> jrahm-master
 
 class CommandHandler
 {
