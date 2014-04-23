@@ -17,7 +17,7 @@
 #include "Event.hpp"
 #include "os_ss/MarshallingStrategy.hpp"
 
-class EventMarshlingStrategy:public MarshllingStrategy<Event>
+class EventMarshlingStrategy:public MarshallingStrategy<Event>
 {
 private:
     
