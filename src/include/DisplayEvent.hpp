@@ -22,7 +22,7 @@ public:
 	DisplayEvent();
     ~DisplayEvent();
     
-    Event::Type getType();
+    Event::Type getType() const;
 
 };
 

@@ -13,7 +13,7 @@ AttackEvent::~AttackEvent()
 {
     
 }
-Event::Type AttackEvent::getType()
+Event::Type AttackEvent::getType() const
 {
     return type;
 }

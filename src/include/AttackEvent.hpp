@@ -22,7 +22,7 @@ public:
 	AttackEvent();
     ~AttackEvent();
     
-    Event::Type getType();
+    Event::Type getType() const;
 
 };
 

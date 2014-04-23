@@ -20,7 +20,7 @@ public:
     virtual size_t bytesNeeded( const T& val ) = 0;
 
     /* write a type T to an IO stream */
-    virtual void write( unsigned char* out, size_t len, const T& val ) = 0;
+    virtual int write( unsigned char* out, size_t len, const T& val ) = 0;
 };
 
 #endif /* MARSHALLINGSTRATEGY_HPP_ */

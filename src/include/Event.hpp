@@ -17,7 +17,10 @@ public:
 	virtual ~Event(){};
     enum Type {QUIT = 0, ATTACK = 1, DISPLAY = 2};
     
-    virtual Type getType() = 0;
+    virtual Type getType() const = 0;
+    
+    inline const string& getEvent() const {return event;}
+    void setEvent(const string& events){ event = events; }
 private:
 
 protected:

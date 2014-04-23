@@ -13,7 +13,7 @@ DisplayEvent::~DisplayEvent()
 {
     
 }
-Event::Type DisplayEvent::getType()
+Event::Type DisplayEvent::getType() const
 {
     return type;
 }

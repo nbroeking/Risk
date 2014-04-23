@@ -22,7 +22,7 @@ public:
 	QuitEvent();
     ~QuitEvent();
     
-    Event::Type getType();
+    Event::Type getType() const;
 
 };
 

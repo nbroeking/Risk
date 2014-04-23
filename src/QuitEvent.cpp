@@ -13,7 +13,7 @@ QuitEvent::~QuitEvent()
 {
     
 }
-Event::Type QuitEvent::getType()
+Event::Type QuitEvent::getType() const
 {
     return type;
 }

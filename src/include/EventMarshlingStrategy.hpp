@@ -24,7 +24,7 @@ private:
 public:
     int read( const unsigned char* io, size_t len, Event*& into);
     size_t bytesNeeded( const Event& val);
-    void write(unsigned char* out, size_t len, const Event& val);
+    int write(unsigned char* out, size_t len, const Event& val);
     
 };
 
