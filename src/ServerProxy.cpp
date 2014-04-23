@@ -1,6 +1,7 @@
 #include "ServerProxy.hpp"
 #include "EventMarshallingStrategy.hpp"
 #include "GamestateMarshallingStrategy.hpp"
+#include "os_ss/BasicRawMarshallingStrategy.hpp"
 
 ServerProxy::ServerProxy( MarshallingStrategy<Event>*& evt, MarshallingStrategy<Gamestate>*& gs ) {
     this->setup( evt, gs ) ;
@@ -15,4 +16,23 @@ ServerProxy::ServerProxy() {
 void ServerProxy::setup(MarshallingStrategy<Event>*& evt, MarshallingStrategy<Gamestate>*& gs) {
     this->m_event_marshalling_strategy = evt ;
     this->m_gamestate_marshalling_strategy = gs ;
+
+    m_event_notifier = new GenericNotificationPool<Event>( *evt );
+    m_gamestate_notifier = new GenericNotificationPool<Gamestate>( *gs );
+}
+
+int ServerProxy::connect( std::string& host, short port ) {
+    this->m_socket = Socket::newSocket( host, port ) ;
+    if( ! this->m_socket ) return -1 ;
+    m_notification_pool = new NotificationPool( this->m_socket, new BasicRawMarshallingStrategy() ) ;
+    m_notification_pool->subscribe( m_event_notifier ) ;
+    m_notification_pool->subscribe( m_gamestate_notifier ) ;
+    return 0 ;
+}
+
+void ServerProxy::sendEvent( Event& evt ) {
+    size_t len = m_event_marshalling_strategy->bytesNeeded( evt ) ;
+    unsigned char* tosend = new unsigned char[len] ;
+    len = m_event_marshalling_strategy->write( tosend, len, evt ) ;
+    m_socket->write( tosend, len ) ;
 }

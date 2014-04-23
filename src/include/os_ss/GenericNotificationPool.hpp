@@ -21,10 +21,13 @@ public:
     GenericNotificationPool(
         NotificationPool& notification,
         MarshallingStrategy<T>& strat ) {
-
-        m_pool = &notification ;
         m_strat = &strat ;
-        m_pool->subscribe( this ) ;
+        notification.subscribe( this ) ;
+    }
+
+    GenericNotificationPool(
+        MarshallingStrategy<T>& strat) {
+        m_strat = &strat ;
     }
 
     void subscribe( GenericObserver<T>* observer ) {
@@ -37,7 +40,7 @@ public:
 
     void onBytesRead( const unsigned char* bytes, size_t len ) {
         T* into ;
-        if( m_strat.read( bytes, len, into )  ) {
+        if( m_strat->read( bytes, len, into )  ) {
             std::cerr << "Unable to marshal type" << std::endl;
         } else {
             for( typename std::vector<GenericObserver<T>*>::iterator itr = m_observers.begin() ;
@@ -47,7 +50,6 @@ public:
     }
 
 private:
-    NotificationPool* m_pool ;
     MarshallingStrategy<T>* m_strat ;
     std::vector<GenericObserver<T>*> m_observers ;
 }; 

@@ -45,6 +45,9 @@ int GameApplication::run()
     //Set up
     int run = 1;
     
+    //Initilize
+    
+    
     while( run )
     {
         //get command

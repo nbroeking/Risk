@@ -26,7 +26,6 @@ protected:
     
 public:
     int run();
-    
     //Static member variables
     static RiskApplication* getApplication();
     
