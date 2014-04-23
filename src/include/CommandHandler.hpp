@@ -11,12 +11,19 @@
 
 #include <iostream>
 #include <string>
+<<<<<<< HEAD
 #include "Handler.hpp"
 #include "QuitEvent.hpp"
 #include "AttackEvent.hpp"
 #include "DisplayEvent.hpp"
+=======
+// #include "Handler.hpp"
+// #include "QuitEvent.hpp"
+// #include "AttackEvent.hpp"
+#include "Event.hpp"
+>>>>>>> 034d98b93b6cc30dba3deab3b3656f925f7af490
 
-class CommandHandler :public Handler
+class CommandHandler
 {
     
 public:

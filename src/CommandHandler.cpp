@@ -21,6 +21,7 @@ CommandHandler::~CommandHandler()
 Event* CommandHandler::handle(string command)
 {
     
+<<<<<<< HEAD
     if( command == "quit")
     {
         return new QuitEvent();
@@ -33,4 +34,14 @@ Event* CommandHandler::handle(string command)
     {
         return new AttackEvent();
     }
+=======
+//    if( command == "quit")
+//    {
+//        return new QuitEvent();
+//    }
+//    else
+//    {
+//        return new AttackEvent();
+//    }
+>>>>>>> 034d98b93b6cc30dba3deab3b3656f925f7af490
 }
