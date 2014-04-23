@@ -6,8 +6,8 @@ BasicFileDescriptor::BasicFileDescriptor( int fd ) {
     this->fd = fd ;
 }
 
-void BasicFileDescriptor::read( unsigned char* arr, size_t len ) {
-    ::read( this->fd, arr, len ) ;
+ssize_t BasicFileDescriptor::read( unsigned char* arr, size_t len ) {
+    return ::read( this->fd, arr, len ) ;
 }
 
 void BasicFileDescriptor::write( const unsigned char* arr, size_t len ) {

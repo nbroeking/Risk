@@ -21,12 +21,12 @@ CommandHandler::~CommandHandler()
 Event* CommandHandler::handle(string command)
 {
     
-    if( command == "quit")
-    {
-        return new QuitEvent();
-    }
-    else
-    {
-        return new AttackEvent();
-    }
+//    if( command == "quit")
+//    {
+//        return new QuitEvent();
+//    }
+//    else
+//    {
+//        return new AttackEvent();
+//    }
 }

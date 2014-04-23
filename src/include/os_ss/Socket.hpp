@@ -9,10 +9,14 @@
 
 #include "BasicFileDescriptor.hpp"
 
+#include <string>
+
 class Socket : public BasicFileDescriptor {
 public:
+    Socket( int raw_fd ) ;
+
     /* Create a new socket */
-    static Socket newSocket() ;
+    static Socket* newSocket(std::string& hostname, short port) ;
 } ;
 
 #endif /* SOCKET_HPP_ */

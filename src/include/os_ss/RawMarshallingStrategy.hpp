@@ -12,7 +12,7 @@
 class RawMarshallingStrategy {
 public:
     virtual unsigned char* read( IO* io, size_t* len ) = 0;
-    virtual void write( IO* io, const unsigned char* ptr ) = 0;
+    virtual void write( IO* io, const unsigned char* ptr, size_t len ) = 0;
 };
 
 #endif /* DEMARSHALLINGSTRATEGY_HPP_ */
