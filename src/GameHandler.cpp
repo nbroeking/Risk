@@ -12,12 +12,15 @@ GameHandler::GameHandler()
 {
     state = new Gamestate();
     //Constructor
+    
+    server = new ServerProxy();
 }
 
 GameHandler::~GameHandler()
 {
     //Destructor
     delete state;
+    delete server;
 }
 
 bool GameHandler::handle(Event * event)
@@ -34,4 +37,11 @@ bool GameHandler::handle(Event * event)
             break;
     }
     return true;
+}
+int GameHandler::init()
+{
+    cout << "\nAttempting to join a game!!!\n";
+    
+    
+    
 }

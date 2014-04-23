@@ -15,6 +15,7 @@
 #include "QuitEvent.hpp"
 #include "AttackEvent.hpp"
 #include "Gamestate.hpp"
+#include "ServerProxy.hpp"
 
 
 class GameHandler :public Handler
@@ -22,12 +23,14 @@ class GameHandler :public Handler
 
 private:
     Gamestate *state;
-    
+    ServerProxy *server;
 public:
     GameHandler();
     ~GameHandler();
     
     bool handle(Event * event);
+    
+    int init();
     
 };
 #endif /* defined(____CommandHandler__) */
