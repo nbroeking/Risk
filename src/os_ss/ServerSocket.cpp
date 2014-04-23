@@ -14,7 +14,7 @@
 ServerSocket::ServerSocket(){} ;
 
 ServerSocket* ServerSocket::newServerSocket( short int port ) {
-    int listenfd = 0, connfd = 0 ;
+    int listenfd = 0;
     struct sockaddr_in serv_addr ;
     
     listenfd = socket( AF_INET, SOCK_STREAM, 0 ) ;

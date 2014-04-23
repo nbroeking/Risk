@@ -43,6 +43,7 @@ public:
             for( typename std::vector<GenericObserver<T>*>::iterator itr = m_observers.begin() ;
                  itr != m_observers.end() ; ++ itr ) (*itr)->onEvent( *into ) ;
         }
+        delete into ;
     }
 
 private:

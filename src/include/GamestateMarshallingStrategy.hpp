@@ -18,13 +18,13 @@
 #include "Gamestate.hpp"
 #include "os_ss/MarshallingStrategy.hpp"
 
-class GamestateMarshlingStrategy:public MarshallingStrategy<Gamestate>
+class GamestateMarshallingStrategy:public MarshallingStrategy<Gamestate>
 {
 private:
     
 public:
     int read( const unsigned char* io, size_t len, Gamestate*& into);
-    size_t bytesNeeded( const Event& val);
+    size_t bytesNeeded( const Gamestate& val);
     int write(unsigned char* out, size_t len, const Gamestate& val);
     
 };
