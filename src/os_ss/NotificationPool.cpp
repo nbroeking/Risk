@@ -21,6 +21,7 @@ void NotificationPool::run() {
     while ( true ) {
         unsigned char* tmp = m_marshal_strategy->read( m_io, &nbytes ) ;
         fireObserverEvent( tmp, nbytes );
+        delete[] tmp ;
     }
 }
 

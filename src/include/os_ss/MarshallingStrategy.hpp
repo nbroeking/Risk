@@ -17,7 +17,7 @@ public:
     virtual int read( const unsigned char* io, size_t len, T*& into ) = 0;
 
     /* The number of bytes needed to marshal the type */
-    virtual void bytesNeeded( const T& val ) ;
+    virtual size_t bytesNeeded( const T& val ) = 0;
 
     /* write a type T to an IO stream */
     virtual void write( unsigned char* out, size_t len, const T& val ) = 0;

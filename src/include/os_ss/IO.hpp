@@ -11,7 +11,7 @@
 
 class IO {
 public:
-    virtual void read( unsigned char* arr, size_t len ) = 0;
+    virtual ssize_t read( unsigned char* arr, size_t len ) = 0;
     virtual void write( const unsigned char* arr, size_t len ) = 0;
 };
 
