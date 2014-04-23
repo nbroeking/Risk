@@ -3,27 +3,27 @@
 //Written on: April 7 2014
 //Purpose This file is to encapuslate different types of things that can happen in the game.
 
-#ifndef __Event__
-#define __Event__
+#ifndef __AttackEvent__
+#define __AttackEvent__
 
+#include "Event.hpp"
 #include <strings.h>
 #include <iostream>
 
 using namespace std;
 
-class Event
+class AttackEvent: public Event
 {
-public:
-	virtual ~Event(){};
-    enum Type {QUIT = 0, ATTACK = 1, DISPLAY = 2};
-    
-    virtual Type getType() = 0;
 private:
 
 protected:
+ 
+public:
+	AttackEvent();
+    ~AttackEvent();
+    
+    Event::Type getType();
 
-    Type type;
-	string event;
 };
 
 #endif // __Event__

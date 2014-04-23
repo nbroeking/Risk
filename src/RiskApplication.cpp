@@ -28,7 +28,6 @@ RiskApplication* RiskApplication::getApplication()
     }
     return application; // Return the applicatons
 }
-
 RiskApplication::RiskApplication()
 {
     //cout<<"Creating a RiskApplication!\n"; //Default RiskApplication constructor

@@ -15,6 +15,7 @@ GameApplication::GameApplication()
     //Created a new application
     //cout << "Creating a GameApplication\n";
     eventDelegate = new CLEventDelegate();
+    gameHandler = new GameHandler();
 }
 GameApplication::~GameApplication()
 {
@@ -53,6 +54,10 @@ int GameApplication::run()
         if( event->getType() == Event::QUIT)
         {
             run = 0;
+        }
+        else
+        {
+            gameHandler->handle(event);
         }
         //Wait for Server Validation
         

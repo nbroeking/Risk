@@ -1,30 +1,33 @@
 //
-//  CommandHandler.h
+//  GameHandler.h
 //  
 //
 //  Created by Nicolas Charles Herbert Broeking on 4/7/14.
 //
 //
 
-#ifndef ____CommandHandler__
-#define ____CommandHandler__
+#ifndef ____GameHandler__
+#define ____GameHandler__
 
 #include <iostream>
 #include <string>
-#include "Event.hpp"
 #include "Handler.hpp"
 #include "QuitEvent.hpp"
 #include "AttackEvent.hpp"
-#include "DisplayEvent.hpp"
+#include "GameState.hpp"
 
-class CommandHandler
+
+class GameHandler :public Handler
 {
+
+private:
+    Gamestate *state;
     
 public:
-    CommandHandler();
-    ~CommandHandler();
+    GameHandler();
+    ~GameHandler();
     
-    Event* handle(string command);
+    bool handle(Event * event);
     
 };
 #endif /* defined(____CommandHandler__) */
