@@ -1,6 +1,12 @@
 #include "os_ss/Time.hpp"
 #include <cstdlib>
 
+#ifdef __MACH__
+#include <mach/mach.h>
+#include <mach/clock.h>
+#include <mach/mach_error.h>
+#endif
+
 void Time::millisInFuture( struct timespec* ts, timeout_t millis ) {
 #ifdef __MACH__
 	clock_serv_t cclock;
