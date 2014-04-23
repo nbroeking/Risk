@@ -59,11 +59,40 @@ void Gamestate::setCountries( int* countriest, int numCountriest)
         delete[]countries;
     }
     
-    if( numCountries < numCountriest)
+    if( numCountries != numCountriest)
     {
-        return -1;
+        return;
+    }
+    
+    countries = new int[numCountries];
+    
+    for( int i = 0; i < numCountries; i++)
+    {
+        countries[i] = countriest[i];
     }
     return 0;
 }
-void setOwners( int* ownerst, int numCountries);
-void setNumCountries( int numCountries);
+void Gamestate::setOwners( int* ownerst, int numCountriest)
+{
+    if( owners != NULL)
+    {
+        delete[]owners;
+    }
+    
+    if( numCountries != numCountriest)
+    {
+        return;
+    }
+    
+    owners = new int[numCountries];
+    
+    for( int i = 0; i < numCountries; i++)
+    {
+        owners[i] = ownerst[i];
+    }
+    return 0;
+}
+void setNumCountries( int numCountriest)
+{
+    numCountries = numCountriest
+}
