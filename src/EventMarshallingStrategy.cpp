@@ -6,7 +6,7 @@
 //
 //
 
-#include "EventMarshlingStrategy.hpp"
+#include "EventMarshallingStrategy.hpp"
 #include "AttackEvent.hpp"
 #include "QuitEvent.hpp"
 

@@ -61,9 +61,9 @@ void Gamestate::setCountries( int* countriest, int numCountriest)
     
     if( numCountries < numCountriest)
     {
-        return -1;
+     //   return -1;
     }
-    return 0;
+   // return 0;
 }
 void setOwners( int* ownerst, int numCountries);
 void setNumCountries( int numCountries);
