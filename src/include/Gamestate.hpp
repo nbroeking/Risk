@@ -24,9 +24,9 @@ public:
     ~Gamestate();
     void display();
     
-    const int* getCountries()const {return countries;}
-    const int* getOwners()const {return owners;}
-    const int* getNumCountries()const{return numCountries;}
+    inline int* getCountries()const {return countries;}
+    inline int* getOwners()const {return owners;}
+    inline int getNumCountries()const{return numCountries;}
     
     void setCountries( int* countriest, int numCountriest);
     void setOwners( int* ownerst, int numCountriest);

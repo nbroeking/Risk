@@ -70,7 +70,7 @@ void Gamestate::setCountries( int* countriest, int numCountriest)
     {
         countries[i] = countriest[i];
     }
-    return 0;
+    return;
 }
 void Gamestate::setOwners( int* ownerst, int numCountriest)
 {
@@ -90,9 +90,9 @@ void Gamestate::setOwners( int* ownerst, int numCountriest)
     {
         owners[i] = ownerst[i];
     }
-    return 0;
+    return;
 }
-void setNumCountries( int numCountriest)
+void Gamestate::setNumCountries( int numCountriest)
 {
-    numCountries = numCountriest
+    numCountries = numCountriest;
 }
