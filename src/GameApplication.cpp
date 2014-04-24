@@ -32,14 +32,6 @@ RiskApplication* GameApplication::getApplication()
     }
     return application;
 }
-/*void GameApplication::cleanUpApplication()
-{
-    if( application != NULL)
-    {
-        delete application;
-        application = NULL;
-    }
-}*/
 int GameApplication::run()
 {
     //Set up
@@ -62,9 +54,6 @@ int GameApplication::run()
         {
             gameHandler->handle(event);
         }
-        //Wait for Server Validation
-        
-        //Wait for next players move
     }
     
     return 0;

@@ -11,7 +11,7 @@
 #include <errno.h>
 #include <arpa/inet.h> 
 
-Socket* Socket::newSocket( std::string& hostname, short port ) {
+Socket* Socket::newSocket( const std::string& hostname, short port ) {
     struct sockaddr_in serv_addr ;
     int sockfd = socket( AF_INET, SOCK_STREAM, 0 ) ;   
     memset( &serv_addr, 0, sizeof( struct sockaddr_in ) ) ;

@@ -25,7 +25,7 @@ ServerProxy();
 /*
  * Connect the server proxy to the server
  */
-int connect( std::string& host, short port ) ;
+int connect( const std::string& host, short port ) ;
 
 /*
  * Send an event from the server
