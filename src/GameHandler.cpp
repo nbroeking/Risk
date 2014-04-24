@@ -7,6 +7,9 @@
 //
 
 #include "GameHandler.hpp"
+#include <cstdio>
+
+#include "PingEvent.hpp"
 
 GameHandler::GameHandler()
 {
@@ -71,9 +74,19 @@ void GameHandler::onEvent(Event& eventt)
 {
     ScopedLock temp(gameLock);
     
+    PongEvent pong ;
     switch( eventt.getType() ) {
     case Event::MESSAGE:
         printf("Message from server: %s\n", eventt.getContent().c_str() ) ;
+        break ;
+    case Event::PING:
+        printf("Ping from server.\n") ;
+        server->sendEvent( pong );
+        break ;
+    case Event::PONG:
+        printf("Pong from server.\n");
+        break ;
+    default: ;
     }
 }
 void GameHandler::onEvent(Gamestate& statet)

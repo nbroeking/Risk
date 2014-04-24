@@ -1,5 +1,7 @@
 #include "os_ss/BasicRawMarshallingStrategy.hpp"
 
+BasicRawMarshallingStrategy* BasicRawMarshallingStrategy::inst ;
+
 unsigned char* BasicRawMarshallingStrategy::read( IO* io, size_t* len ) {
     union {
         int val ;

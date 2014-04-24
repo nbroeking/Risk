@@ -17,6 +17,10 @@ public:
         write(init) ;
     }
 
+    MVar( ) {
+        readmutex.lock() ;
+    }
+
     T take() {
         readmutex.lock() ;
         T ret = val;
@@ -30,7 +34,7 @@ public:
         readmutex.unlock() ;
     }
 
-    int tryTake( T& ret, int64_t timeout ) {
+    int tryTake( T& ret, int64_t timeout=-1 ) {
         if( ! readmutex.lock( timeout ) ) {
             ret = val ;
             writemutex.unlock() ;
@@ -39,7 +43,7 @@ public:
         return 1 ;
     }
 
-    int tryWrite( const T& tmp, int64_t timeout ) {
+    int tryWrite( const T& tmp, int64_t timeout=-1 ) {
         if( ! writemutex.lock( timeout ) ) {
             val = tmp ;
             readmutex.unlock() ;

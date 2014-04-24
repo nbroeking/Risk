@@ -15,6 +15,9 @@ public:
     BasicFileDescriptor( int fd ) ;
     ssize_t read( unsigned char* arr, size_t len ) ;
     void write( const unsigned char* arr, size_t len ) ;
+    void close() ;
+
+    virtual ~BasicFileDescriptor() ;
 private:
     int fd ;
 } ;

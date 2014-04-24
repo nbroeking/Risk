@@ -23,6 +23,7 @@ public:
     ~DisplayEvent();
     
     Event::Type getType() const;
+    DisplayEvent* clone() { return new DisplayEvent( *this ) ; } ;
 
 };
 

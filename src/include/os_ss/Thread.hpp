@@ -27,10 +27,39 @@ public:
      */
     int join( ) ;
 
+    /*
+     * Kill the thread
+     */
+    void cancel( ) ;
+
     virtual ~Thread() ;
 
 protected:
     pthread_t m_thread ;
 } ;
 
+template <class T>
+class QuickThread : public Thread {
+private:
+
+T* obj ;
+void (T::*func)() ;
+
+public:
+
+QuickThread( T* obj, void(T::*func)() ):
+    obj( obj ), func( func ) {}
+
+void run() {
+    (obj->*func)();
+}
+
+};
+
+template<class T>
+QuickThread<T>* threadGo( T* val, void (T::*func)() ) {
+    QuickThread<T>* ret = new QuickThread<T>( val, func ) ;
+    ret->start() ;
+    return ret ;
+}
 #endif /* THREAD_HPP_ */

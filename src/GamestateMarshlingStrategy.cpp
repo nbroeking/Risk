@@ -9,6 +9,8 @@
 #include "GamestateMarshallingStrategy.hpp"
 #include "Gamestate.hpp"
 
+GamestateMarshallingStrategy* GamestateMarshallingStrategy::inst = NULL;
+
 int GamestateMarshallingStrategy::read(const unsigned char* io, size_t len, Gamestate*& into)
 {
     if( len <= 2||io[0] != 0x00)

@@ -24,6 +24,7 @@ public:
     
     Event::Type getType() const;
 
+    ConnectEvent* clone() { return new ConnectEvent( *this ) ; } ;
 };
 
 #endif // __Event__

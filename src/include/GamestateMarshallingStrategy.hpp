@@ -21,12 +21,18 @@
 class GamestateMarshallingStrategy:public MarshallingStrategy<Gamestate>
 {
 private:
-    
+ 	static GamestateMarshallingStrategy* inst ;   
 public:
     int read( const unsigned char* io, size_t len, Gamestate*& into);
     size_t bytesNeeded( const Gamestate& val);
     int write(unsigned char* out, size_t len, const Gamestate& val);
     
+	static GamestateMarshallingStrategy& instance() {
+		if( ! inst ) {
+			inst = new GamestateMarshallingStrategy() ;
+		}
+		return * inst ;
+	}
 };
 
 #endif /* defined(____EventMarshlingStrategy__) */

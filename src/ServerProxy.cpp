@@ -8,8 +8,9 @@ ServerProxy::ServerProxy( MarshallingStrategy<Event>*& evt, MarshallingStrategy<
 }
 
 ServerProxy::ServerProxy() {
-    MarshallingStrategy<Event>* m1 = new EventMarshlingStrategy() ;
+    MarshallingStrategy<Event>* m1 = new EventMarshallingStrategy() ;
     MarshallingStrategy<Gamestate>* m2 = new GamestateMarshallingStrategy() ;
+    m_raw_marshalling_strategy = &BasicRawMarshallingStrategy::instance();
     this->setup( m1, m2 ) ;
 }
 
@@ -34,5 +35,5 @@ int ServerProxy::connect( const std::string& host, short port ) {
 void ServerProxy::sendEvent( Event& evt ) {
     size_t len ;
     unsigned char* tosend = serialize( evt, *m_event_marshalling_strategy, len ); ;
-    m_socket->write( tosend, len ) ;
+    m_raw_marshalling_strategy->write( m_socket, tosend, len ) ;
 }

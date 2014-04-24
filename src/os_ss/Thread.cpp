@@ -16,4 +16,8 @@ int Thread::join( ) {
     return pthread_join( m_thread, NULL ) ;
 }
 
+void Thread::cancel() {
+	pthread_cancel( m_thread ) ;
+}
+
 Thread::~Thread() {}

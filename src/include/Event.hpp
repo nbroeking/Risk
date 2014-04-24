@@ -15,14 +15,24 @@ class Event
 {
 public:
 	virtual ~Event(){};
-    enum Type {QUIT = 0, ATTACK = 1, DISPLAY = 2, CONNECT = 3};
+    enum Type {
+          QUIT = 0
+        , ATTACK = 1
+        , DISPLAY = 2
+        , CONNECT = 3
+        , MESSAGE = 4
+        , PING = 5
+        , PONG = 6
+        , CLOSE = 7
+    };
     
-    virtual Type getType() const = 0;
+    virtual Type getType() const { return type; };
     
     inline const string& getEvent() const {return event;}
-    void setEvent(const string& events){ event = events; }
+    inline const string& getContent() const { return event ; }
+    inline void setEvent(const string& events){ event = events; }
 
-    Event* clone() { return this; } ;
+    virtual Event* clone() = 0 ;
 private:
 
 protected:

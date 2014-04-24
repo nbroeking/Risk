@@ -1,3 +1,6 @@
+#ifndef SERVERSOCKET_HPP_
+#define SERVERSOCKET_HPP_
+
 #include "os_ss/Socket.hpp"
 
 class ServerSocket {
@@ -11,3 +14,5 @@ private:
     ServerSocket() ;
     int fd ;
 };
+
+#endif

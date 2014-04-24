@@ -23,7 +23,7 @@ public:
     ~QuitEvent();
     
     Event::Type getType() const;
-
+    QuitEvent* clone() { return new QuitEvent( * this ) ; }
 };
 
 #endif // __Event__

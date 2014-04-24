@@ -24,10 +24,10 @@ public:
 };
 
 template<class T>
-inline unsigned char* serialize( const T& val, MarshallingStrategy<T>& strat, size_t& len ) {
-    len = strat->bytesNeeded( val ) ;
+unsigned char* serialize( const T& val, MarshallingStrategy<T>& strat, size_t& len ) {
+    len = strat.bytesNeeded( val ) ;
     unsigned char* ret = new unsigned char[ len ] ;
-    if( ! strat->write( ret, len, val ) ) {
+    if( ! strat.write( ret, len, val ) ) {
         return ret ;
     }
     delete[] ret ;
