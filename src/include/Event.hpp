@@ -15,7 +15,7 @@ class Event
 {
 public:
 	virtual ~Event(){};
-    enum Type {QUIT = 0, ATTACK = 1, DISPLAY = 2};
+    enum Type {QUIT = 0, ATTACK = 1, DISPLAY = 2, CONNECT = 3};
     
     virtual Type getType() const = 0;
     
