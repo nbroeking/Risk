@@ -21,6 +21,8 @@ public:
     
     inline const string& getEvent() const {return event;}
     void setEvent(const string& events){ event = events; }
+
+    Event* clone() { return this; } ;
 private:
 
 protected:

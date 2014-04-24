@@ -27,6 +27,7 @@ int ServerProxy::connect( const std::string& host, short port ) {
     m_notification_pool = new NotificationPool( this->m_socket, new BasicRawMarshallingStrategy() ) ;
     m_notification_pool->subscribe( m_event_notifier ) ;
     m_notification_pool->subscribe( m_gamestate_notifier ) ;
+    m_notification_pool->start() ;
     return 0 ;
 }
 
