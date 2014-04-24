@@ -38,6 +38,10 @@ int GameApplication::run()
     int run = 1;
     
     //Initilize
+    if( ((GameHandler*)gameHandler)->init() < 0)
+    {
+        run = 0;
+    }
     
     
     while( run )

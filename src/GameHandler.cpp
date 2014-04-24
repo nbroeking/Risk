@@ -53,7 +53,7 @@ int GameHandler::init()
     
     if(server->connect("127.0.0.1", 5432) != 0)
     {
-        cout << "\n Unable to connect to a game!\n";
+        cout << "\nUnable to connect to a game!\n";
         return -1;
     }
     //Wait for gamestate
@@ -61,7 +61,7 @@ int GameHandler::init()
     
     if( state == NULL)
     {
-        cout <<"\n Unable to connect to a game!\n";
+        cout <<"\nUnable to connect to a game!\n";
         return -1;
     }
     return 0;
