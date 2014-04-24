@@ -32,8 +32,7 @@ int ServerProxy::connect( const std::string& host, short port ) {
 }
 
 void ServerProxy::sendEvent( Event& evt ) {
-    size_t len = m_event_marshalling_strategy->bytesNeeded( evt ) ;
-    unsigned char* tosend = new unsigned char[len] ;
-    len = m_event_marshalling_strategy->write( tosend, len, evt ) ;
+    size_t len ;
+    unsigned char* tosend = serialize( evt, *m_event_marshalling_strategy, len ); ;
     m_socket->write( tosend, len ) ;
 }

@@ -41,7 +41,7 @@ bool GameHandler::handle(Event * event)
             break;
             
         default:
-            //Send it to Josh
+            server->sendEvent( * event ) ;
             break;
     }
     return true;
@@ -71,7 +71,10 @@ void GameHandler::onEvent(Event& eventt)
 {
     ScopedLock temp(gameLock);
     
-    eventt.getType();
+    switch( eventt.getType() ) {
+    case Event::MESSAGE:
+        printf("Message from server: %s\n", eventt.getContent().c_str() ) ;
+    }
 }
 void GameHandler::onEvent(Gamestate& statet)
 {
