@@ -9,9 +9,14 @@ int Mutex::lock( timeout_t timeout ) {
     if( timeout < 0 ) {
         return pthread_mutex_lock( &this->mutex ) ;
     } else {
+#ifdef __linux__
         timespec ts ;
         Time::millisInFuture( &ts, timeout ) ;
         return pthread_mutex_timedlock(&this->mutex,&ts) ;
+#else
+        return pthread_mutex_lock(&this->mutex);
+#endif
+        
     }
 }
 
