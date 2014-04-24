@@ -21,12 +21,13 @@ void ServerProxy::setup(MarshallingStrategy<Event>*& evt, MarshallingStrategy<Ga
     m_gamestate_notifier = new GenericNotificationPool<Gamestate>( *gs );
 }
 
-int ServerProxy::connect( std::string& host, short port ) {
+int ServerProxy::connect( const std::string& host, short port ) {
     this->m_socket = Socket::newSocket( host, port ) ;
     if( ! this->m_socket ) return -1 ;
     m_notification_pool = new NotificationPool( this->m_socket, new BasicRawMarshallingStrategy() ) ;
     m_notification_pool->subscribe( m_event_notifier ) ;
     m_notification_pool->subscribe( m_gamestate_notifier ) ;
+    m_notification_pool->start() ;
     return 0 ;
 }
 

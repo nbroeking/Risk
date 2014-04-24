@@ -16,7 +16,7 @@ public:
     Socket( int raw_fd ) ;
 
     /* Create a new socket */
-    static Socket* newSocket(std::string& hostname, short port) ;
+    static Socket* newSocket(const std::string& hostname, short port) ;
 } ;
 
 #endif /* SOCKET_HPP_ */
