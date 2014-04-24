@@ -10,7 +10,7 @@
 
 GameHandler::GameHandler()
 {
-    state = new Gamestate();
+    state = NULL;
     //Constructor
     
     server = new ServerProxy();
@@ -22,7 +22,11 @@ GameHandler::GameHandler()
 GameHandler::~GameHandler()
 {
     //Destructor
-    delete state;
+    if( state != NULL)
+    {
+        delete state;
+        state = NULL;
+    }
     delete server;
 }
 
