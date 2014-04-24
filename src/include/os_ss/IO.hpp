@@ -13,6 +13,7 @@ class IO {
 public:
     virtual ssize_t read( unsigned char* arr, size_t len ) = 0;
     virtual void write( const unsigned char* arr, size_t len ) = 0;
+    virtual ~IO() {}
 };
 
 #endif /* IO_HPP_ */

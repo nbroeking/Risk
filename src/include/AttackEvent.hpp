@@ -24,6 +24,9 @@ public:
     
     Event::Type getType() const;
 
+    inline AttackEvent* clone() {
+        return new AttackEvent( * this ) ;
+    }
 };
 
 #endif // __Event__

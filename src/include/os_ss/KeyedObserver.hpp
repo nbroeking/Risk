@@ -9,7 +9,8 @@
 
 template <class K, class T>
 class KeyedObserver {
-    virtual void onEvent( const K& key, T& val );
+public:
+    virtual void onEvent( const K& key, T& val ) = 0;
 } ;
 
 #endif /* KEYEDOBSERVER_HPP_ */

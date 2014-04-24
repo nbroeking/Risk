@@ -5,6 +5,8 @@
 //This program class is a application that runs the game side of things.
 
 #include "GameApplication.hpp"
+#include "Debug.hpp"
+
 #include <string>
 #include <iostream>
 
@@ -12,10 +14,12 @@ using namespace std;
 
 GameApplication::GameApplication()
 {
+	LogScope("GameApplication") ;
     //Created a new application
     //cout << "Creating a GameApplication\n";
     eventDelegate = new CLEventDelegate();
-    gameHandler = new GameHandler();
+	GameHandler* tmp = new GameHandler() ;
+	gameHandler = tmp ;
 }
 GameApplication::~GameApplication()
 {
@@ -34,6 +38,7 @@ RiskApplication* GameApplication::getApplication()
 }
 int GameApplication::run()
 {
+	LogScope("run") ;
     //Set up
     int run = 1;
     

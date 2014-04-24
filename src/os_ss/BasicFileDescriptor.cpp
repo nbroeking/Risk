@@ -13,3 +13,11 @@ ssize_t BasicFileDescriptor::read( unsigned char* arr, size_t len ) {
 void BasicFileDescriptor::write( const unsigned char* arr, size_t len ) {
     ::write( this->fd, arr, len ) ;
 }
+
+void BasicFileDescriptor::close() {
+    ::close( this->fd ) ;
+}
+
+BasicFileDescriptor::~BasicFileDescriptor() {
+	this->close() ;
+}

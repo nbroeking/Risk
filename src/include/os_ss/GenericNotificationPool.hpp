@@ -30,6 +30,11 @@ public:
         m_strat = &strat ;
     }
 
+    void inject(T& val) {
+        for( typename std::vector<GenericObserver<T>*>::iterator itr = m_observers.begin() ;
+             itr != m_observers.end() ; ++ itr ) (*itr)->onEvent( val ) ;
+    }
+
     void subscribe( GenericObserver<T>* observer ) {
         m_observers.push_back( observer ) ;
     }
@@ -43,11 +48,12 @@ public:
         if( m_strat->read( bytes, len, into )  ) {
             std::cerr << "Unable to marshal type" << std::endl;
         } else {
-            for( typename std::vector<GenericObserver<T>*>::iterator itr = m_observers.begin() ;
-                 itr != m_observers.end() ; ++ itr ) (*itr)->onEvent( *into ) ;
+            inject( * into ) ;
+            delete into ;
         }
-        delete into ;
     }
+
+    virtual ~GenericNotificationPool() {}
 
 private:
     MarshallingStrategy<T>* m_strat ;

@@ -15,24 +15,49 @@
 #include "os_ss/Socket.hpp"
 #include "os_ss/Thread.hpp"
 #include "os_ss/MVar.hpp"
+#include "os_ss/BlockingQueue.hpp"
 #include "os_ss/KeyedObserver.hpp"
 #include "os_ss/KeyedNotifier.hpp"
+#include "ClientProxy.hpp"
 
-class ServerApplication {
+class ServerApplication : private KeyedObserver<int,Event> {
 public:
-void run() ;
+enum State {
+      INITIALIZE
+    , WAIT_CONNECT_1
+    
+} ;
 
+struct recur_function {
+recur_function( recur_function (ServerApplication::* tmp)() ) {
+    val = tmp ;
+}
+recur_function (ServerApplication::*val)();
+};
+
+int run() ;
+
+/* The state functions
+ * These guys return the infinitely recursive
+ * type of a function that returns a type of itself.
+ */
+recur_function wait_connect1() ;
+recur_function wait_connect2() ;
+recur_function send_ping() ;
+recur_function established() ;
+
+void acceptConnections() ;
 private:
-KeyedNotifier<string,Event>* acceptConnection() ;
-
-Gamestate m_state ;
-Mutex m_mutex ;
+typedef pair<int,Event*> EventMessage ;
+ClientProxy<int>* acceptConnection( int key ) ;
+void onEvent( const int& key, Event& evt ) ;
 
 ServerSocket* server ;
-KeyedNotifier<string,Event>* player1 ;
-KeyedNotifier<string,Event>* player2 ;
+BlockingQueue< ClientProxy<int>* > m_accept_queue ;
+BlockingQueue< pair<int,Event*> > m_event_queue ;
 
-MVar< std::pair<string,Event*> >* mvar ;
+ClientProxy<int>* player1 ;
+ClientProxy<int>* player2 ;
 
 } ;
 
