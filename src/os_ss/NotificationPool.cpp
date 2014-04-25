@@ -1,4 +1,5 @@
 #include "os_ss/NotificationPool.hpp"
+#include "Debug.hpp"
 #include <algorithm>
 
 #include "Debug.hpp"
@@ -23,10 +24,11 @@ void NotificationPool::unsubscribe( IOObserver* a_observer ) {
 void NotificationPool::run() {
     size_t nbytes = 0;
     while ( ! finish ) {
+        lprintf("Reading from IO\n");
         m_alloc = m_marshal_strategy->read( m_io, &nbytes ) ;
 
 		if( m_alloc == NULL || nbytes == 0 ) {
-			//lprintf("0 Bytes read or m_alloc == NULL. Cancel.\n") ;
+			lprintf("0 Bytes read or m_alloc == NULL. Cancel.\n") ;
 			fireCloseEvent() ;
 			return ;
 		}
