@@ -16,7 +16,7 @@ GameHandler::GameHandler()
     state = NULL;
     //Constructor
     
-    player = 0;
+    player = -1;
     turn = false;
     shouldDie = false;
     server = new ServerProxy();
@@ -43,9 +43,9 @@ bool GameHandler::handle(Event * event)
         cout << " \nJosh broke the server... Good bye" << endl;
         return false;
     }
-    cout << "Before Lock!" << endl;
+    //cout << "Before Lock!" << endl;
     ScopedLock temp(gameLock);
-    cout << "\n after lock" << endl;
+    //cout << "\n after lock" << endl;
     switch (event->getType())
     {
         case Event::DISPLAY:
@@ -54,7 +54,17 @@ bool GameHandler::handle(Event * event)
             break;
             
         default:
-            server->sendEvent( * event ) ;
+            
+            if( turn )
+            {
+                cout<< "It's your turn and you attacked!" << endl;
+                server->sendEvent( * event ) ;
+            }
+            else
+            {
+                cout << "\nIt's not your turn!\n" << endl;
+            }
+            
             
             //Wait for new Gamestate
             break;
@@ -85,12 +95,32 @@ int GameHandler::init()
 }
 void GameHandler::onEvent(Event& eventt)
 {
-    ScopedLock temp(gameLock);
+    ScopedLock _scopedLock(gameLock);
     
     PongEvent pong ;
-    switch( eventt.getType() ) {
+    
+    string temp;
+    string valid;
+    
+    switch( eventt.getType() )
+    {
     case Event::MESSAGE:
         printf("Message from server: %s\n", eventt.getContent().c_str() ) ;
+            temp = eventt.getContent().c_str();
+            if( temp.length() < 10)
+            {
+                valid = temp.substr(0,7);
+                if( valid == "Player:")
+                {
+                    valid = temp.substr(7, 1);
+                    player = stoi(valid);
+                }
+                else if( valid == "youturn" )
+                {
+                    turn = true;
+                }
+            }
+            //cout << "you are player: " << player << endl;
         break ;
     case Event::PING:
         printf("Ping from server.\n") ;
@@ -104,7 +134,7 @@ void GameHandler::onEvent(Event& eventt)
 }
 void GameHandler::onEvent(Gamestate& statet)
 {
-    cout << "Locking the mutex on gamestate " << endl;
+    //cout << "Locking the mutex on gamestate " << endl;
     ScopedLock temp(gameLock);
     if(state == NULL)
     {
