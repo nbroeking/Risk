@@ -16,6 +16,9 @@ GameHandler::GameHandler()
     state = NULL;
     //Constructor
     
+    player = 0;
+    turn = false;
+    shouldDie = false;
     server = new ServerProxy();
     
     server->addGameStateObserver(this);
@@ -35,7 +38,14 @@ GameHandler::~GameHandler()
 
 bool GameHandler::handle(Event * event)
 {
+    if( shouldDie)
+    {
+        cout << " \nJosh broke the server... Good bye" << endl;
+        return false;
+    }
+    cout << "Before Lock!" << endl;
     ScopedLock temp(gameLock);
+    cout << "\n after lock" << endl;
     switch (event->getType())
     {
         case Event::DISPLAY:
@@ -45,21 +55,24 @@ bool GameHandler::handle(Event * event)
             
         default:
             server->sendEvent( * event ) ;
+            
+            //Wait for new Gamestate
             break;
     }
     return true;
 }
 int GameHandler::init()
 {
-    gameLock.lock();
+    ScopedLock lock(gameLock);
     cout << "\nAttempting to join a game!!!\n";
     
-    if(server->connect("127.0.0.1", 5432) != 0)
+    if(server->connect("10.201.6.121", 5432) != 0)
     {
         cout << "\nUnable to connect to a game!\n";
         return -1;
     }
     //Wait for gamestate
+    server->addCloseObserver(this);
     wait.wait( gameLock, 20000);
     
     if( state == NULL)
@@ -91,6 +104,7 @@ void GameHandler::onEvent(Event& eventt)
 }
 void GameHandler::onEvent(Gamestate& statet)
 {
+    cout << "Locking the mutex on gamestate " << endl;
     ScopedLock temp(gameLock);
     if(state == NULL)
     {
@@ -99,4 +113,8 @@ void GameHandler::onEvent(Gamestate& statet)
     
     state = &statet;
     wait.signal();
+}
+void GameHandler::onClose()
+{
+    shouldDie = true;
 }

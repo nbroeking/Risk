@@ -37,3 +37,7 @@ void ServerProxy::sendEvent( Event& evt ) {
     unsigned char* tosend = serialize( evt, *m_event_marshalling_strategy, len ); ;
     m_raw_marshalling_strategy->write( m_socket, tosend, len ) ;
 }
+void ServerProxy::addCloseObserver( CloseHandler *handle)
+{
+    m_notification_pool->addCloseHandler(handle);
+}

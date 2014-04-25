@@ -26,7 +26,7 @@ void NotificationPool::run() {
         m_alloc = m_marshal_strategy->read( m_io, &nbytes ) ;
 
 		if( m_alloc == NULL || nbytes == 0 ) {
-			lprintf("0 Bytes read or m_alloc == NULL. Cancel.\n") ;
+			//lprintf("0 Bytes read or m_alloc == NULL. Cancel.\n") ;
 			fireCloseEvent() ;
 			return ;
 		}

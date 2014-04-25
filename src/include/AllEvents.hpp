@@ -5,3 +5,4 @@
 #include "MessageEvent.hpp"
 #include "ConnectEvent.hpp"
 #include "QuitEvent.hpp"
+#include "NullEvent.hpp"

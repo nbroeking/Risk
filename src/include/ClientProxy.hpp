@@ -46,7 +46,7 @@ inline void addKeyedObserver( KeyedObserver<K,Event>& observer ) {
 }
 
 inline void removeKeyedObserver( KeyedObserver<K,Event>& observer ) {
-    m_event_notifier.removeKeyedObserver( observer ) ;
+    m_event_notifier->removeKeyedObserver( observer ) ;
 }
 
 inline void write( const unsigned char* chrs, size_t len ) {

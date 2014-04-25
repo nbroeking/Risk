@@ -9,6 +9,7 @@
 
 #include <string>
 #include <iostream>
+#include "AllEvents.hpp"
 
 using namespace std;
 
@@ -59,9 +60,19 @@ int GameApplication::run()
         {
             run = 0;
         }
+        else if( event->getType() == Event::ENULL )
+        {
+            cout << "\nThat is not a valid command please try again! \n" << endl;
+        }
         else
         {
-            gameHandler->handle(event);
+            //Validation first
+            cout << "Josh handles it \n";
+                if(!gameHandler->handle(event) )
+                {
+                    run = false;
+                    continue;
+                }
         }
     }
     

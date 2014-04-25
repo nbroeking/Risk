@@ -40,10 +40,12 @@ inline void addEventObserver( GenericObserver<Event>* observer ) {
     m_event_notifier->subscribe( observer ) ;
 }
 
+void addCloseObserver( CloseHandler *handle);
+    
 private:
 void setup(MarshallingStrategy<Event>*&, MarshallingStrategy<Gamestate>*&) ;
 
-bool connected ;
+//bool connected ;
 Socket* m_socket ;
 
 NotificationPool* m_notification_pool ;

@@ -20,9 +20,10 @@
 #include "os_ss/Mutex.hpp"
 #include "os_ss/ScopedLock.hpp"
 #include "os_ss/Condition.hpp"
+#include "os_ss/CloseHandler.hpp"
 
 
-class GameHandler :public Handler , public GenericObserver<Event>, public GenericObserver<Gamestate>
+class GameHandler :public Handler , public GenericObserver<Event>, public GenericObserver<Gamestate>, CloseHandler
 {
 
 private:
@@ -31,6 +32,11 @@ private:
     
     Mutex gameLock;
     Condition wait;
+    
+    bool turn;
+    bool shouldDie;
+    
+    int player;
 public:
     GameHandler();
     ~GameHandler();
@@ -41,6 +47,6 @@ public:
     
     void onEvent(Event&);
     void onEvent(Gamestate&);
-    
+    void onClose();
 };
 #endif /* defined(____CommandHandler__) */
