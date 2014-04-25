@@ -45,6 +45,7 @@ recur_function wait_connect1() ;
 recur_function wait_connect2() ;
 recur_function send_ping() ;
 recur_function established() ;
+recur_function player1Turn() ;
 
 void acceptConnections() ;
 private:

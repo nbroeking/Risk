@@ -27,7 +27,7 @@ template<class T>
 unsigned char* serialize( const T& val, MarshallingStrategy<T>& strat, size_t& len ) {
     len = strat.bytesNeeded( val ) ;
     unsigned char* ret = new unsigned char[ len ] ;
-    if( ! strat.write( ret, len, val ) ) {
+    if( strat.write( ret, len, val ) >= 0 ) {
         return ret ;
     }
     delete[] ret ;

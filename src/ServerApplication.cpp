@@ -60,6 +60,7 @@ ServerApplication::recur_function ServerApplication::wait_connect1() {
     LogScope __ls("wait_connect1" ) ;
     player1 = m_accept_queue.front() ;
     m_accept_queue.pop() ;
+    player1->message("Player:1") ;
     return &ServerApplication::wait_connect2 ;
 }
 
@@ -67,6 +68,7 @@ ServerApplication::recur_function ServerApplication::wait_connect2() {
     LogScope __ls("wait_connect2" ) ;
     ClientProxy<int>* null = NULL ;
     player2 = m_accept_queue.front_default( null, 5000 ) ;
+    player2->message("Player:2") ;
     if( player2 == NULL ) {
         lprintf("No connection in 5 seconds, sending ping to player 1.\n") ;
         return &ServerApplication::send_ping ;
@@ -129,15 +131,12 @@ ServerApplication::recur_function ServerApplication::established() {
     player1->postGamestate(gs) ;
     player2->postGamestate(gs) ;
 
-    while ( true ) {
+    return &ServerApplication::player1Turn ;
+}
 
-        evt = m_event_queue.front() ;
-        m_event_queue.pop() ;
-
-        if ( evt.second ) {
-            printf("Recieved event from player %d. Type %d. Content: %s\n",
-                evt.first, evt.second->getType(), evt.second->getContent().c_str() ) ;
-        }
-    }
+ServerApplication::recur_function ServerApplication::player1Turn() {
+    LogScope __ls("player1Turn");
+    player1->message("youturn");
+    // pair<int,Event*> evt = make_pair( 0, NULL ) ;
     return NULL ;
 }
