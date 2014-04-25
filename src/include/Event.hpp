@@ -24,6 +24,7 @@ public:
         , PING = 5
         , PONG = 6
         , CLOSE = 7
+        , ENULL = 8
     };
     
     virtual Type getType() const { return type; };

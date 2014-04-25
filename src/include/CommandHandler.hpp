@@ -12,9 +12,7 @@
 #include <iostream>
 #include <string>
 #include "Handler.hpp"
-#include "QuitEvent.hpp"
-#include "AttackEvent.hpp"
-#include "DisplayEvent.hpp"
+#include "AllEvents.hpp"
 
 class CommandHandler
 {
