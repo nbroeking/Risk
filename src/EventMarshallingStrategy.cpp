@@ -18,7 +18,7 @@ EventMarshallingStrategy* EventMarshallingStrategy::inst = NULL ;
 int EventMarshallingStrategy::read(const unsigned char* io, size_t len, Event*& into)
 {
     if( len < 3||io[0] != 0x01) {
-        lprintf("Error reading event. Length less than 3.\n") ;
+//        lprintf("Error reading event. Length less than 3.\n") ;
         return -1;
     }
 

@@ -45,9 +45,7 @@ public:
 
     void onBytesRead( const unsigned char* bytes, size_t len ) {
         T* into ;
-        if( m_strat->read( bytes, len, into )  ) {
-            std::cerr << "Unable to marshal type" << std::endl;
-        } else {
+        if( ! m_strat->read( bytes, len, into )  ) {
             inject( * into ) ;
             delete into ;
         }

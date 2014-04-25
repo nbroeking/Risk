@@ -90,6 +90,22 @@ int postGamestate( const Gamestate& gs ) {
     return -2 ;
 }
 
+int message( const string& str ) {
+    if( ! closed ) {
+        MessageEvent evt( str ) ;
+        size_t len ;
+        unsigned char* ser = serialize( (Event&)evt, EventMarshallingStrategy::instance(), len ) ;
+        if( ser ) {
+            m_raw_marshalling_strategy->write( this, ser, len );
+            delete[] ser ;
+            return 0 ;
+        } else {
+            return -1 ;
+        }
+    }
+    return -2 ;
+}
+
 void onClose() {
     if( ! closed ) {
         closed = true ;
