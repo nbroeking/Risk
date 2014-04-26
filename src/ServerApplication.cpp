@@ -68,11 +68,11 @@ ServerApplication::recur_function ServerApplication::wait_connect2() {
     LogScope __ls("wait_connect2" ) ;
     ClientProxy<int>* null = NULL ;
     player2 = m_accept_queue.front_default( null, 5000 ) ;
-    player2->message("Player:2") ;
     if( player2 == NULL ) {
         lprintf("No connection in 5 seconds, sending ping to player 1.\n") ;
         return &ServerApplication::send_ping ;
     }
+    player2->message("Player:2") ;
     lprintf("Player 2 has connected.\n") ;
     return &ServerApplication::established ;
 }
@@ -135,8 +135,12 @@ ServerApplication::recur_function ServerApplication::established() {
 }
 
 ServerApplication::recur_function ServerApplication::player1Turn() {
+    // sleep(1) ;
     LogScope __ls("player1Turn");
-    player1->message("youturn");
+    // while( true ) { 
+        lprintf("Sending youturn!\n") ;
+        player1->message("youturn");
+    // }
     // pair<int,Event*> evt = make_pair( 0, NULL ) ;
     return NULL ;
 }
