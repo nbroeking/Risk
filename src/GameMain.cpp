@@ -5,11 +5,15 @@
 #include "GameApplication.hpp"
 #include "ServerApplication.hpp"
 
-int client_main( int argc, char** argv ) {
-    (void) argc ;
-    (void) argv ;
+int client_main( int argc, char** argv )
+{
+    if( argc < 2)
+    {
+        cerr << "You need to enter an IP Adress"<< endl;
+        return 1;
+    }
     RiskApplication * app = GameApplication::getApplication();
-    int answer = app->run();
+    int answer = app->run(argv[1]);
     app->cleanUpApplication();
     return answer;
 }

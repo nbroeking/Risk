@@ -38,8 +38,9 @@ RiskApplication::~RiskApplication()
     //cout<<"Destructing a RiskApplication!\n"; //Default RiskAppliction destructor
 }
 
-int RiskApplication::run()
+int RiskApplication::run(string ip)
 {
+    (void)ip;
     cout <<"Running a RiskApplication!\n"; //Default RiskApplicaton Run
     return 0;
 }

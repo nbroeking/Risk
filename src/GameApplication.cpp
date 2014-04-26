@@ -37,14 +37,14 @@ RiskApplication* GameApplication::getApplication()
     }
     return application;
 }
-int GameApplication::run()
+int GameApplication::run(string ip)
 {
 	LogScope("run") ;
     //Set up
     int run = 1;
     
     //Initilize
-    if( ((GameHandler*)gameHandler)->init() < 0)
+    if( ((GameHandler*)gameHandler)->init(ip) < 0)
     {
         run = 0;
     }

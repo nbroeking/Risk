@@ -5,6 +5,9 @@
 #ifndef __RiskApplication__
 #define __RiskApplication__
 
+#include <string>
+using namespace std;
+
 class RiskApplication
 {
 private:
@@ -15,7 +18,7 @@ protected:
     virtual ~RiskApplication()=0;
     
 public:
-    virtual int run() = 0;
+    virtual int run(string ip) = 0;
     
     
     //Static class variables

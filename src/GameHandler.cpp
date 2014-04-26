@@ -71,12 +71,12 @@ bool GameHandler::handle(Event * event)
     }
     return true;
 }
-int GameHandler::init()
+int GameHandler::init(string ip)
 {
     ScopedLock lock(gameLock);
     cout << "\nAttempting to join a game!!!\n";
     
-    if(server->connect("10.201.6.121", 5432) != 0)
+    if(server->connect(ip, 5432) != 0)
     {
         cout << "\nUnable to connect to a game!\n";
         return -1;

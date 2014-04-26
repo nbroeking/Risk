@@ -22,6 +22,7 @@
 #include "os_ss/Condition.hpp"
 #include "os_ss/CloseHandler.hpp"
 
+using namespace std;
 
 class GameHandler :public Handler , public GenericObserver<Event>, public GenericObserver<Gamestate>, CloseHandler
 {
@@ -43,7 +44,7 @@ public:
     
     bool handle(Event * event);
     
-    int init();
+    int init(string);
     
     void onEvent(Event&);
     void onEvent(Gamestate&);

@@ -25,7 +25,7 @@ protected:
    ~GameApplication();
     
 public:
-    int run();
+    int run(string ip);
     //Static member variables
     static RiskApplication* getApplication();
     

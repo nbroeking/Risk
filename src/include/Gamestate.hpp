@@ -31,5 +31,22 @@ public:
     void setCountries( int* countriest, int numCountriest);
     void setOwners( int* ownerst, int numCountriest);
     void setNumCountries( int numCountriest);
+    
+    void setCountry(int index, int value)
+    {
+        countries[index] = value;
+    }
+    void setOwner( int index, int value)
+    {
+        owners[index] = value;
+    }
+    int getCountry(int index)
+    {
+        return countries[index];
+    }
+    int getOwner(int index)
+    {
+        return owners[index];
+    }
 };
 #endif /* defined(____Gamestate__) */
