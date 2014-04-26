@@ -40,7 +40,7 @@ bool GameHandler::handle(Event * event)
 {
     if( shouldDie)
     {
-        cout << " \nJosh broke the server... Good bye" << endl;
+        cout << " \nThe game has ended! YOU WIN!" << endl;
         return false;
     }
     //cout << "Before Lock!" << endl;
@@ -150,5 +150,6 @@ void GameHandler::onEvent(Gamestate& statet)
 }
 void GameHandler::onClose()
 {
+    cout << "Hi" << endl;
     shouldDie = true;
 }
