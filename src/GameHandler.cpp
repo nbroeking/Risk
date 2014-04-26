@@ -38,6 +38,7 @@ GameHandler::~GameHandler()
 
 bool GameHandler::handle(Event * event)
 {
+    
     if( shouldDie)
     {
         cout << " \nThe game has ended! YOU WIN!" << endl;
@@ -57,7 +58,7 @@ bool GameHandler::handle(Event * event)
             
             if( turn )
             {
-                cout<< "It's your turn and you attacked!" << endl;
+                //validate
                 server->sendEvent( * event ) ;
             }
             else
@@ -95,8 +96,10 @@ int GameHandler::init(string ip)
 }
 void GameHandler::onEvent(Event& eventt)
 {
+    cerr << "Trying to handle Event" << endl;
     ScopedLock _scopedLock(gameLock);
     
+    cerr << "Starting event lock " << endl;
     PongEvent pong ;
     
     string temp;
@@ -135,9 +138,11 @@ void GameHandler::onEvent(Event& eventt)
         break ;
     default: ;
     }
+    cerr << "Ending event lock " << endl;
 }
 void GameHandler::onEvent(Gamestate& statet)
 {
+    cerr << "Trying to handle Gamestate" << endl;
     //cout << "Locking the mutex on gamestate " << endl;
     ScopedLock temp(gameLock);
     if(state == NULL)
@@ -145,11 +150,12 @@ void GameHandler::onEvent(Gamestate& statet)
         delete state;
     }
     
-    state = &statet;
+    state = new Gamestate(statet);
+    
     wait.signal();
+    cerr << "Ending Lock" << endl;
 }
 void GameHandler::onClose()
 {
-    cout << "Hi" << endl;
     shouldDie = true;
 }

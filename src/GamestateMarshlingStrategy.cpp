@@ -8,6 +8,7 @@
 
 #include "GamestateMarshallingStrategy.hpp"
 #include "Gamestate.hpp"
+#include "Debug.hpp"
 
 GamestateMarshallingStrategy* GamestateMarshallingStrategy::inst = NULL;
 
