@@ -23,6 +23,8 @@ GameHandler::GameHandler()
     
     server->addGameStateObserver(this);
     server->addEventObserver(this);
+    
+    validator= new Validator();
 }
 
 GameHandler::~GameHandler()
@@ -34,6 +36,7 @@ GameHandler::~GameHandler()
         state = NULL;
     }
     delete server;
+    delete validator;
 }
 
 bool GameHandler::handle(Event * event)
@@ -59,7 +62,15 @@ bool GameHandler::handle(Event * event)
             if( turn )
             {
                 //validate
-                server->sendEvent( * event ) ;
+                if(validator->validate(*state, *event, player))
+                {
+                    server->sendEvent( * event );
+                    turn = false;
+                }
+                else
+                {
+                    cerr << "\nThat is not a valid move! \n" << endl;
+                }
             }
             else
             {
@@ -125,6 +136,10 @@ void GameHandler::onEvent(Event& eventt)
                 else if( valid == "youturn" )
                 {
                     turn = true;
+                }
+                else
+                {
+                    //Party time
                 }
             }
             //cout << "you are player: " << player << endl;
