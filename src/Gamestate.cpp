@@ -9,6 +9,8 @@
 #include "Gamestate.hpp"
 #include <iostream>
 
+#include <algorithm>
+
 using namespace std;
 Gamestate::Gamestate()
 {
@@ -22,6 +24,18 @@ Gamestate::Gamestate()
         owners[i] = i%2;
     }
 }
+
+Gamestate::Gamestate( const Gamestate& copy ) {
+	numCountries = copy.numCountries ;
+	this->countries = new int[numCountries] ;
+	this->owners = new int[numCountries] ;
+
+	for( int i = 0 ; i < numCountries ; ++ i ) {
+		this->countries[i] = copy.countries[i] ;
+		this->owners[i] = copy.owners[i] ;
+	}
+}
+
 Gamestate::~Gamestate()
 {
     delete[] countries;

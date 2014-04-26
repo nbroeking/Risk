@@ -46,7 +46,9 @@ recur_function wait_connect2() ;
 recur_function send_ping() ;
 recur_function established() ;
 recur_function player1Turn() ;
+recur_function player2Turn() ;
 
+void playerTurn( ClientProxy<int>* p1, ClientProxy<int>* p2 ) ;
 void acceptConnections() ;
 private:
 typedef pair<int,Event*> EventMessage ;
@@ -59,6 +61,8 @@ BlockingQueue< pair<int,Event*> > m_event_queue ;
 
 ClientProxy<int>* player1 ;
 ClientProxy<int>* player2 ;
+
+Gamestate m_gs ;
 
 } ;
 
