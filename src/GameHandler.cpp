@@ -113,7 +113,11 @@ void GameHandler::onEvent(Event& eventt)
                 if( valid == "Player:")
                 {
                     valid = temp.substr(7, 1);
+#ifdef __linux__
+                    player = atoi( valid.c_str() );
+#else
                     player = stoi(valid);
+#endif
                 }
                 else if( valid == "youturn" )
                 {
