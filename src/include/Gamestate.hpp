@@ -21,6 +21,7 @@ private:
     
 public:
     Gamestate();
+    Gamestate( const Gamestate& copy ) ;
     ~Gamestate();
     void display();
     

@@ -37,6 +37,7 @@ ClientProxy<int>* ServerApplication::acceptConnection( int key ) {
 
 int ServerApplication::run() {
     LogScope __ls("run" ) ;
+    srand( time(NULL) ) ;
     server = ServerSocket::newServerSocket( 5432 ) ;
     if( ! server ) {
         perror("Unable to bind to port") ;
@@ -127,20 +128,51 @@ ServerApplication::recur_function ServerApplication::established() {
     pair<int,Event*> evt ;
 
     lprintf("Posting gamestates.\n") ;
-    Gamestate gs;
-    player1->postGamestate(gs) ;
-    player2->postGamestate(gs) ;
+    player1->postGamestate(m_gs) ;
+    player2->postGamestate(m_gs) ;
 
     return &ServerApplication::player1Turn ;
 }
 
-ServerApplication::recur_function ServerApplication::player1Turn() {
+void ServerApplication::playerTurn( ClientProxy<int>* p1, ClientProxy<int>* p2 ) {
     // sleep(1) ;
-    LogScope __ls("player1Turn");
+    LogScope __ls("playerTurn");
     // while( true ) { 
-        lprintf("Sending youturn!\n") ;
-        player1->message("youturn");
+    lprintf("Sending youturn!\n") ;
+    p1->message("youturn");
     // }
-    // pair<int,Event*> evt = make_pair( 0, NULL ) ;
-    return NULL ;
+    pair<int,Event*> evt = make_pair( 0, (Event*)NULL ) ;
+    evt = m_event_queue.front( ) ;
+    m_event_queue.pop( ) ;
+
+    if( evt.second->getType() == Event::ATTACK ) {
+        const std::string& str = evt.second->getContent() ;
+        size_t idx = str.find("/") ;
+        string country1 = str.substr( 0, idx ) ;
+        string country2 = str.substr( idx ) ;
+
+        int c1 = atoi( country1.c_str() ) ;
+        int c2 = atoi( country2.c_str() ) ;
+
+        int troops1 = m_gs.getCountry( c1 ) ;
+        int troops2 = m_gs.getCountry( c2 ) ;
+
+        int min = troops1 - troops2 > troops2 ? troops2 : troops1 - troops2 ;
+        m_gs.setCountry( c2, troops2 - rand() % min ) ;
+
+        p1->postGamestate( m_gs ) ;
+        p2->postGamestate( m_gs ) ;
+
+        p2->message("youturn") ;
+    }
+}
+
+ServerApplication::recur_function ServerApplication::player1Turn() {
+    playerTurn( player1, player2 ) ;
+    return &ServerApplication::player2Turn ;
+}
+
+ServerApplication::recur_function ServerApplication::player2Turn() {
+    playerTurn( player2, player1 ) ;
+    return &ServerApplication::player1Turn ;
 }
