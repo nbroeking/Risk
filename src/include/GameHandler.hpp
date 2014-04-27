@@ -16,6 +16,7 @@
 #include "AttackEvent.hpp"
 #include "Gamestate.hpp"
 #include "ServerProxy.hpp"
+#include "Validator.hpp"
 
 #include "os_ss/Mutex.hpp"
 #include "os_ss/ScopedLock.hpp"
@@ -31,6 +32,7 @@ private:
     Gamestate *state;
     ServerProxy *server;
     
+    Validator *validator;
     Mutex gameLock;
     Condition wait;
     
