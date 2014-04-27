@@ -20,7 +20,7 @@ Gamestate::Gamestate()
     
     for( int i = 0; i < numCountries; i ++)
     {
-        countries[i] = 3;
+        countries[i] = 2;
         owners[i] = i%2;
     }
 }
