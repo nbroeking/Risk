@@ -50,6 +50,7 @@ int ServerApplication::run() {
 
     recur_function rec = &ServerApplication::wait_connect1 ;
     while( rec.val != NULL ) {
+        sleep(1) ;
         rec = (this->*rec.val)();
     }
 
@@ -139,7 +140,6 @@ void ServerApplication::playerTurn( ClientProxy<int>* p1, ClientProxy<int>* p2 )
     LogScope __ls("playerTurn");
     // while( true ) { 
     lprintf("Sending youturn!\n") ;
-    sleep(1) ;
     p1->message("youturn");
     // }
     pair<int,Event*> evt = make_pair( 0, (Event*)NULL ) ;
