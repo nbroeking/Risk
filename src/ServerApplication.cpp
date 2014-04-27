@@ -137,9 +137,10 @@ ServerApplication::recur_function ServerApplication::established() {
 void ServerApplication::playerTurn( ClientProxy<int>* p1, ClientProxy<int>* p2 ) {
     // sleep(1) ;
     LogScope __ls("playerTurn");
-    // while( true ) { 
-    lprintf("Sending youturn!\n") ;
+    // while( true ) {
+    
     sleep(1) ;
+    lprintf("Sending youturn!\n") ;
     p1->message("youturn");
     // }
     pair<int,Event*> evt = make_pair( 0, (Event*)NULL ) ;
