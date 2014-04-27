@@ -61,7 +61,7 @@ ServerApplication::recur_function ServerApplication::wait_connect1() {
     LogScope __ls("wait_connect1" ) ;
     player1 = m_accept_queue.front() ;
     m_accept_queue.pop() ;
-    player1->message("Player:1") ;
+    player1->message("Player:0") ;
     return &ServerApplication::wait_connect2 ;
 }
 
@@ -73,7 +73,7 @@ ServerApplication::recur_function ServerApplication::wait_connect2() {
         lprintf("No connection in 5 seconds, sending ping to player 1.\n") ;
         return &ServerApplication::send_ping ;
     }
-    player2->message("Player:2") ;
+    player2->message("Player:1") ;
     lprintf("Player 2 has connected.\n") ;
     return &ServerApplication::established ;
 }
@@ -139,6 +139,7 @@ void ServerApplication::playerTurn( ClientProxy<int>* p1, ClientProxy<int>* p2 )
     LogScope __ls("playerTurn");
     // while( true ) { 
     lprintf("Sending youturn!\n") ;
+    sleep(1) ;
     p1->message("youturn");
     // }
     pair<int,Event*> evt = make_pair( 0, (Event*)NULL ) ;
@@ -148,8 +149,8 @@ void ServerApplication::playerTurn( ClientProxy<int>* p1, ClientProxy<int>* p2 )
     if( evt.second->getType() == Event::ATTACK ) {
         const std::string& str = evt.second->getContent() ;
         size_t idx = str.find("/") ;
-        string country1 = str.substr( 0, idx ) ;
-        string country2 = str.substr( idx ) ;
+        string country1 = str.substr( idx+1 ) ;
+        string country2 = str.substr( 0, idx ) ;
 
         int c1 = atoi( country1.c_str() ) ;
         int c2 = atoi( country2.c_str() ) ;
@@ -158,12 +159,44 @@ void ServerApplication::playerTurn( ClientProxy<int>* p1, ClientProxy<int>* p2 )
         int troops2 = m_gs.getCountry( c2 ) ;
 
         int min = troops1 - troops2 > troops2 ? troops2 : troops1 - troops2 ;
-        m_gs.setCountry( c2, troops2 - rand() % min ) ;
+        int max = min > 1 ? min : 1 ;
+
+        lprintf("Attack between %d (%d) and %d (%d).\n", c1, troops1, c2, troops2) ;
+        int gone = rand() % max + 1 ;
+        lprintf("%d lost %d troops\n", c2, gone) ;
+
+        int newtroops = troops2 - gone ;
+        m_gs.setCountry( c2, newtroops ) ;
+
+        int oldowner = m_gs.getOwner( c2 ) ;
+        if( newtroops == 0 ) {
+            int tmp ;
+            lprintf("Country %d has been conquered!\n", c2) ;
+            m_gs.setOwner( c2, m_gs.getOwner( c1 ) ) ;
+            m_gs.setCountry( c2, 1 ) ;
+
+            tmp = m_gs.getCountry( c1 ) ;
+            lprintf("Setting new troops to %d.\n", tmp) ;
+            m_gs.setCountry( c1, tmp ) ;
+
+        }
+
+        bool tmp = true ;
+        for( int i = 0 ; i < m_gs.getNumCountries() ; ++ i ) {
+            if( m_gs.getOwner( i ) == oldowner &&
+                 m_gs.getCountry( i ) > 1 ) {
+                    tmp = false ;
+                    break ;
+                }
+        }
+
+        if( tmp ) {
+            p2->message("You Lose!") ;
+            p1->message("You Win!") ;
+        }
 
         p1->postGamestate( m_gs ) ;
         p2->postGamestate( m_gs ) ;
-
-        p2->message("youturn") ;
     }
 }
 
