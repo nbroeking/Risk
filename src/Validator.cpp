@@ -4,7 +4,7 @@ bool Validator::validate(Gamestate* s, Event* evt , int player)
     const std::string& str = evt->getContent();
     size_t idx = str.find("/");
     
-    cout << "Code : " << str << endl;
+    //cout << "Code : " << str << endl;
     
     string s1 = str.substr(0, idx);
     string s2 = str.substr(idx+1);
