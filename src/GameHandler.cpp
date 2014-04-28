@@ -70,7 +70,7 @@ bool GameHandler::handle(Event * event)
             if( turn )
             {
                 //validate
-                if(validator->validate(*state, *event, player))
+                if(validator->validate(state, event, player))
                 {
                     server->sendEvent( * event );
                     turn = false;

@@ -8,6 +8,6 @@ class Validator
 {
     
 public:
-    bool validate(Gamestate, Event, int);
+    bool validate(Gamestate*, Event*, int);
 };
 #endif
