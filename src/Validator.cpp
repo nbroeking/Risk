@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "Validator.hpp"
 bool Validator::validate(Gamestate* s, Event* evt , int player)
 {
