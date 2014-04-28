@@ -16,6 +16,7 @@ GameHandler::GameHandler()
     state = NULL;
     //Constructor
     
+    didWin = true;
     player = -1;
     turn = false;
     shouldDie = false;
@@ -44,7 +45,14 @@ bool GameHandler::handle(Event * event)
     
     if( shouldDie)
     {
-        cout << " \nThe game has ended! YOU WIN!" << endl;
+        if( didWin)
+        {
+            cout << "\nThe game has ended! YOU WIN!" << endl;
+        }
+        else
+        {
+            cout << "\nThe game has ended! YOU ARE A LOSER!!!" << endl;
+        }
         return false;
     }
     //cout << "Before Lock!" << endl;
@@ -54,7 +62,7 @@ bool GameHandler::handle(Event * event)
     {
         case Event::DISPLAY:
             //DIsplay stuff
-            state->display();
+            state->display(player);
             break;
             
         default:
@@ -107,10 +115,10 @@ int GameHandler::init(string ip)
 }
 void GameHandler::onEvent(Event& eventt)
 {
-    cerr << "Trying to handle Event" << endl;
+   // cerr << "Trying to handle Event" << endl;
     ScopedLock _scopedLock(gameLock);
     
-    cerr << "Starting event lock " << endl;
+    //cerr << "Starting event lock " << endl;
     PongEvent pong ;
     
     string temp;
@@ -119,7 +127,7 @@ void GameHandler::onEvent(Event& eventt)
     switch( eventt.getType() )
     {
     case Event::MESSAGE:
-        printf("Message from server: %s\n", eventt.getContent().c_str() ) ;
+        //printf("Message from server: %s\n", eventt.getContent().c_str() ) ;
             temp = eventt.getContent().c_str();
             if( temp.length() < 10)
             {
@@ -137,9 +145,20 @@ void GameHandler::onEvent(Event& eventt)
                 {
                     turn = true;
                 }
-                else
+                else if( valid == "YouWin!")
                 {
                     //Party time
+                    shouldDie = true;
+                    didWin = true;
+                }
+                else if( valid == "YouLose")
+                {
+                    shouldDie = true;
+                    didWin = false;
+                }
+                else
+                {
+                    cerr << "Josh messed something up!" << endl;
                 }
             }
             //cout << "you are player: " << player << endl;
@@ -153,11 +172,11 @@ void GameHandler::onEvent(Event& eventt)
         break ;
     default: ;
     }
-    cerr << "Ending event lock " << endl;
+    //cerr << "Ending event lock " << endl;
 }
 void GameHandler::onEvent(Gamestate& statet)
 {
-    cerr << "Trying to handle Gamestate" << endl;
+    //cerr << "Trying to handle Gamestate" << endl;
     //cout << "Locking the mutex on gamestate " << endl;
     ScopedLock temp(gameLock);
     if(state == NULL)
@@ -168,9 +187,10 @@ void GameHandler::onEvent(Gamestate& statet)
     state = new Gamestate(statet);
     
     wait.signal();
-    cerr << "Ending Lock" << endl;
+    //cerr << "Ending Lock" << endl;
 }
 void GameHandler::onClose()
 {
     shouldDie = true;
+    didWin = true;
 }

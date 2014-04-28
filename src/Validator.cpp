@@ -12,12 +12,16 @@ bool Validator::validate(Gamestate s, Event evt , int player)
     int c1 = atoi(s1.c_str());
     int c2 = atoi(s2.c_str());
     
-    cerr << "Country 1 = " << c1 << endl;
-    cerr << "Country 2 = " << c2 << endl;
+    //cerr << "Country 1 = " << c1 << endl;
+    //cerr << "Country 2 = " << c2 << endl;
     
+    if( (c1 < 0)||(c2 < 0)||(c1 >= s.getNumCountries())||(c2 >= s.getNumCountries()) )
+    {
+        return false;
+    }
     if( s.getOwner(c1) == player)
     {
-        cout << "Country " << c1 << " belongs to " << s.getOwner(c1) << " but player = " << player << endl;
+        //scout << "Country " << c1 << " belongs to " << s.getOwner(c1) << " but player = " << player << endl;
         //cout << "1\n";
         return false;
     }
@@ -28,7 +32,7 @@ bool Validator::validate(Gamestate s, Event evt , int player)
     }
     if( s.getCountry(c2) < 2)
     {
-        cerr << "\n You cant attack with 1 troop." << endl;
+        cerr << "\n You cant attack with 1 troop.";
         return false;
     }
     return true;

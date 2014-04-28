@@ -41,12 +41,22 @@ Gamestate::~Gamestate()
     delete[] countries;
     delete[] owners;
 }
-void Gamestate::display()
+void Gamestate::display(int player)
 {
     cout << endl;
     cout << "__Gamestate__\n";
     cout << endl;
-    cout << "Player 1: \n";
+    
+    cout << "\nYou are player " << player << endl;
+    
+    if( player == 0)
+    {
+        cout << "Your team: \n";
+    }
+    else
+    {
+        cout << "The bad guys \n";
+    }
     for( int i = 0; i < numCountries; i++)
     {
         if( owners[i] == 0)
@@ -55,7 +65,15 @@ void Gamestate::display()
         }
     }
     cout << endl;
-    cout<< "Player 2: \n";
+    
+    if( player == 1)
+    {
+        cout << "Your team: \n";
+    }
+    else
+    {
+        cout << "The bad guys \n";
+    }
     for( int i = 0; i < numCountries; i++)
     {
         if( owners[i] == 1)

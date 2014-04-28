@@ -191,8 +191,8 @@ void ServerApplication::playerTurn( ClientProxy<int>* p1, ClientProxy<int>* p2 )
         }
 
         if( tmp ) {
-            p2->message("You Lose!") ;
-            p1->message("You Win!") ;
+            p2->message("YouLose") ;
+            p1->message("YouWin!") ;
         }
 
         p1->postGamestate( m_gs ) ;

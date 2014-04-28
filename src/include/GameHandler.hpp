@@ -38,6 +38,7 @@ private:
     
     bool turn;
     bool shouldDie;
+    bool didWin;
     
     int player;
 public:

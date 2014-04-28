@@ -15,7 +15,7 @@ using namespace std;
 
 GameApplication::GameApplication()
 {
-	LogScope("GameApplication") ;
+	//LogScope("GameApplication") ;
     //Created a new application
     //cout << "Creating a GameApplication\n";
     eventDelegate = new CLEventDelegate();
@@ -39,7 +39,7 @@ RiskApplication* GameApplication::getApplication()
 }
 int GameApplication::run(string ip)
 {
-	LogScope("run") ;
+	//LogScope("run") ;
     //Set up
     int run = 1;
     
@@ -67,7 +67,7 @@ int GameApplication::run(string ip)
         else
         {
             //Validation first
-            cout << "Josh handles it \n";
+            //cout << "Josh handles it \n";
                 if(!gameHandler->handle(event) )
                 {
                     run = false;

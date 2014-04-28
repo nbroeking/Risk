@@ -23,7 +23,7 @@ public:
     Gamestate();
     Gamestate( const Gamestate& copy ) ;
     ~Gamestate();
-    void display();
+    void display(int);
     
     inline int* getCountries()const {return countries;}
     inline int* getOwners()const {return owners;}

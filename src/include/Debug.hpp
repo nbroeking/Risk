@@ -10,6 +10,9 @@
 #include <cstdio>
 #include "os_ss/LogScope.hpp"
 
-#define lprintf(fmt,...) printf(fmt,##__VA_ARGS__) ;
+//#define lprintf(fmt,...) printf(fmt,##__VA_ARGS__) ;
+
+#define lprintf(fmt, ...) //No debug mode
+
 
 #endif /* DEBUG_HPP_ */

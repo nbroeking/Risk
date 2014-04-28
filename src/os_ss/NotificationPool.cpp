@@ -24,7 +24,7 @@ void NotificationPool::unsubscribe( IOObserver* a_observer ) {
 void NotificationPool::run() {
     size_t nbytes = 0;
     while ( ! finish ) {
-        lprintf("Reading from IO\n");
+        //lprintf("Reading from IO\n");
         m_alloc = m_marshal_strategy->read( m_io, &nbytes ) ;
 
 		if( m_alloc == NULL || nbytes == 0 ) {
