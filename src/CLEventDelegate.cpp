@@ -26,7 +26,7 @@ Event* CLEventDelegate::getCommand()
     
     getline(cin, instruction);
     
-    //cout << endl;
+    cout << endl;
     
     return handler->handle(instruction);
     

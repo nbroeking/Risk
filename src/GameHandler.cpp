@@ -62,7 +62,7 @@ bool GameHandler::handle(Event * event)
     {
         case Event::DISPLAY:
             //DIsplay stuff
-            state->display(player);
+            state->display(player, turn);
             break;
             
         default:
@@ -94,7 +94,7 @@ bool GameHandler::handle(Event * event)
 int GameHandler::init(string ip)
 {
     ScopedLock lock(gameLock);
-    cout << "\nAttempting to join a game!!!\n";
+    cout << "\nAttempting to join a game!!!\n\n";
     
     if(server->connect(ip, 5432) != 0)
     {

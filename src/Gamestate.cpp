@@ -41,13 +41,16 @@ Gamestate::~Gamestate()
     delete[] countries;
     delete[] owners;
 }
-void Gamestate::display(int player)
+void Gamestate::display(int player, bool turn)
 {
     cout << endl;
     cout << "__Gamestate__\n";
     cout << endl;
     
-    cout << "\nYou are player " << player << endl;
+    if( turn )
+    {
+        cout << "It is your turn!!" << endl << endl;
+    }
     
     if( player == 0)
     {
