@@ -33,7 +33,7 @@ bool Validator::validate(Gamestate* s, Event* evt , int player)
     }
     if( s->getCountry(c2) < 2)
     {
-        cerr << "\n You cant attack with 1 troop.";
+        cerr << "\nYou cant attack with 1 troop.";
         return false;
     }
     return true;
